@@ -1,0 +1,150 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include <string.h>
+#include <stdbool.h>
+
+int main ()
+{
+    int menu;
+    int menu_rokok, menu_minuman, menu_gorengan;
+    int banyak_rokok, banyak_minuman, banyak_gorengan;
+    char nama[20], perusahaan[20];
+    bool tambah = true;
+    int surya = 25000, laice = 31500, sampoerna = 24000, marlboro = 20000, garpit = 25000;
+    int kopsus = 5000, xtrajoss = 5000, josu = 5000, tehobeng = 5000, tehtarek = 5000;
+    int bakwan = 1000, risol = 2000, lumpia = 2000, pastel = 3000, tempegoreng = 2000;
+    int harga_rokok, total_harga_rokok = 0;
+    int harga_minuman, total_harga_minuman = 0;
+    int harga_gorengan, total_harga_gorengan = 0;
+    int total_harga;
+    int uang, kembali;
+    
+    // Making the UI, Menu, and User Input
+    printf("===============================\n");
+    printf("======= KASBON SOFTWARE =======\n");
+    printf("===============================\n");
+    while (tambah)
+    {
+        printf("\nMenu :\n");
+        printf("[1] Rokok\n");
+        printf("[2] Minuman\n");
+        printf("[3] Gorengan\n");
+        printf("\nPilihan : ");
+        scanf("%d", &menu);
+        printf("\n");
+        switch (menu)
+            {
+                case 1:
+                    printf("[1] Surya\n");
+                    printf("[2] LA Ice\n");
+                    printf("[3] Sampoerna\n");
+                    printf("[4] Marlboro\n");
+                    printf("[5] Garpit\n");
+                    printf("\nPilihan : ");
+                    scanf("%d", &menu_rokok);
+                    printf("Banyak : ");
+                    scanf("%d", &banyak_rokok);
+                    switch (menu_rokok)
+                    {
+                        case 1:
+                            harga_rokok = surya * banyak_rokok;
+                            break;
+                        case 2:
+                            harga_rokok = laice * banyak_rokok;
+                            break;
+                        case 3:
+                            harga_rokok = sampoerna * banyak_rokok;
+                            break;
+                        case 4:
+                            harga_rokok = marlboro * banyak_rokok;
+                        case 5:
+                            harga_rokok = garpit * banyak_rokok;
+                            break;
+                        default:
+                            break;
+                    }
+                    total_harga_rokok = total_harga_rokok + harga_rokok;
+                    printf("Pesan lagi (1/0) : ");
+                    scanf("%d", &tambah);
+                    break;
+                case 2:
+                    printf("[1] Kopi Susu\n");
+                    printf("[2] Extra Joss\n");
+                    printf("[3] Josu\n");
+                    printf("[4] Teh Obeng\n");
+                    printf("[5] Teh Tarek\n");
+                    printf("\nPilihan : ");
+                    scanf("%d", &menu_minuman);
+                    printf("Banyak : ");
+                    scanf("%d", &banyak_minuman);
+                    switch (menu_minuman)
+                    {
+                        case 1:
+                            harga_minuman = kopsus * banyak_minuman;
+                            break;
+                        case 2:
+                            harga_minuman = xtrajoss * banyak_minuman;
+                            break;
+                        case 3:
+                            harga_minuman = josu * banyak_minuman;
+                            break;
+                        case 4:
+                            harga_minuman = tehobeng * banyak_minuman;
+                            break;
+                        case 5:
+                            harga_minuman = tehtarek * banyak_minuman;
+                            break;
+                        default:
+                            break;
+                    }
+                    total_harga_minuman = total_harga_minuman + harga_minuman;
+                    printf("Pesan lagi (1/0) : ");
+                    scanf("%d", &tambah);
+                    break;
+                case 3:
+                    printf("[1] Bakwan\n");
+                    printf("[2] Risol\n");
+                    printf("[3] Lumpia\n");
+                    printf("[4] Pastel\n");
+                    printf("[5] Tempe Goreng\n");
+                    printf("\nPilihan : ");
+                    scanf("%d", &menu_gorengan);
+                    printf("Banyak : ");
+                    scanf("%d", &banyak_gorengan);
+                    switch (menu_gorengan)
+                    {
+                        case 1:
+                            harga_gorengan = bakwan * banyak_gorengan;
+                            break;
+                        case 2:
+                            harga_gorengan = risol * banyak_gorengan;
+                            break;
+                        case 3:
+                            harga_gorengan = lumpia * banyak_gorengan;
+                            break;
+                        case 4:
+                            harga_gorengan = pastel * banyak_gorengan;
+                            break;
+                        case 5:
+                            harga_gorengan = tempegoreng * banyak_gorengan;
+                            break;
+                        default:
+                            break;
+                    }
+                    total_harga_gorengan = total_harga_gorengan + harga_gorengan;
+                    printf("Pesan lagi (1/0) : ");
+                    scanf("%d", &tambah);
+                    break;
+                default:
+                    printf("Input salah");
+                    break;
+            }
+    }
+    total_harga = total_harga_gorengan + total_harga_minuman + total_harga_rokok;
+    printf("Total anda menjadi %d", total_harga);
+    printf("Input uang : ");
+    scanf("%d", &uang);
+    kembali = uang - total_harga;
+    printf("Kembalian anda adalah %d", kembali);
+}
