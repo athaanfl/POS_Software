@@ -1,0 +1,237 @@
+#include <stdio.h>
+#include <stdbool.h>
+
+int surya = 25000, laice = 31500, sampoerna = 24000, marlboro = 20000, garpit = 25000;
+int kopsus = 5000, xtrajoss = 5000, josu = 5000, tehobeng = 5000, tehtarek = 5000;
+int bakwan = 1000, risol = 2000, lumpia = 2000, pastel = 3000, tempegoreng = 2000;
+
+void displayMenu()
+{
+    printf("\nMenu :\n");
+    printf("[1] Rokok\n");
+    printf("[2] Minuman\n");
+    printf("[3] Gorengan\n");
+    printf("[4] Remove Item\n");
+    printf("\nPilihan : ");
+}
+
+int getChoice()
+{
+    int choice;
+    scanf("%d", &choice);
+    return choice;
+}
+
+int getQuantity()
+{
+    int quantity;
+    printf("Banyak : ");
+    scanf("%d", &quantity);
+    return quantity;
+}
+
+int calculatePrice(int menu_choice, int quantity)
+{
+    int price = 0;
+    switch (menu_choice)
+    {
+        case 1:
+            switch (quantity)
+            {
+                case 1:
+                    price = surya;
+                    break;
+                case 2:
+                    price = laice;
+                    break;
+                case 3:
+                    price = sampoerna;
+                    break;
+                case 4:
+                    price = marlboro;
+                    break;
+                case 5:
+                    price = garpit;
+                    break;
+                default:
+                    break;
+            }
+            break;
+        case 2:
+            switch (quantity)
+            {
+                case 1:
+                    price = kopsus;
+                    break;
+                case 2:
+                    price = xtrajoss;
+                    break;
+                case 3:
+                    price = josu;
+                    break;
+                case 4:
+                    price = tehobeng;
+                    break;
+                case 5:
+                    price = tehtarek;
+                    break;
+                default:
+                    break;
+            }
+            break;
+        case 3:
+            switch (quantity)
+            {
+                case 1:
+                    price = bakwan;
+                    break;
+                case 2:
+                    price = risol;
+                    break;
+                case 3:
+                    price = lumpia;
+                    break;
+                case 4:
+                    price = pastel;
+                    break;
+                case 5:
+                    price = tempegoreng;
+                    break;
+                default:
+                    break;
+            }
+            break;
+        case 4:
+            price = 0; // Remove Item
+            break;
+        default:
+            break;
+    }
+    return price;
+}
+
+int main()
+{
+    int menu;
+    int total_harga = 0;
+    bool tambah = true;
+
+    printf("===============================\n");
+    printf("======= KASBON SOFTWARE =======\n");
+    printf("===============================\n");
+
+    int selected_items[15]; // Assume a maximum of 15 items can be selected
+    int num_selected_items = 0;
+
+    while (tambah)
+    {
+        displayMenu();
+        menu = getChoice();
+        printf("\n");
+
+        int menu_choice, quantity, price;
+        switch (menu)
+        {
+            case 1:
+                printf("[1] Surya\n");
+                printf("[2] LA Ice\n");
+                printf("[3] Sampoerna\n");
+                printf("[4] Marlboro\n");
+                printf("[5] Garpit\n");
+                printf("\nPilihan : ");
+                menu_choice = getChoice();
+                quantity = getQuantity();
+                price = calculatePrice(menu_choice, quantity);
+
+                // Add the selected item to the list and update the total price
+                selected_items[num_selected_items] = price;
+                num_selected_items++;
+                total_harga += price;
+                break;
+
+            case 2:
+                printf("[1] Kopi Susu\n");
+                printf("[2] Extra Joss\n");
+                printf("[3] Josu\n");
+                printf("[4] Teh Obeng\n");
+                printf("[5] Teh Tarek\n");
+                printf("\nPilihan : ");
+                menu_choice = getChoice();
+                quantity = getQuantity();
+                price = calculatePrice(menu_choice, quantity);
+
+                // Add the selected item to the list and update the total price
+                selected_items[num_selected_items] = price;
+                num_selected_items++;
+                total_harga += price;
+                break;
+
+            case 3:
+                printf("[1] Bakwan\n");
+                printf("[2] Risol\n");
+                printf("[3] Lumpia\n");
+                printf("[4] Pastel\n");
+                printf("[5] Tempe Goreng\n");
+                printf("\nPilihan : ");
+                menu_choice = getChoice();
+                quantity = getQuantity();
+                price = calculatePrice(menu_choice, quantity);
+
+                // Add the selected item to the list and update the total price
+                selected_items[num_selected_items] = price;
+                num_selected_items++;
+                total_harga += price;
+                break;
+
+            case 4: // Remove Item
+                if (num_selected_items == 0)
+                {
+                    printf("No items selected to remove.\n");
+                }
+                else
+                {
+                    printf("Select the item to remove (1 - %d): ", num_selected_items);
+                    int item_to_remove;
+                    scanf("%d", &item_to_remove);
+
+                    if (item_to_remove >= 1 && item_to_remove <= num_selected_items)
+                    {
+                        // Update the total price by subtracting the price of the removed item
+                        total_harga -= selected_items[item_to_remove - 1];
+                        printf("Item %d removed.\n", item_to_remove);
+
+                        // Shift the remaining selected items to the left to remove the deleted item
+                        for (int i = item_to_remove - 1; i < num_selected_items - 1; i++)
+                        {
+                            selected_items[i] = selected_items[i + 1];
+                        }
+
+                        num_selected_items--;
+                    }
+                    else
+                    {
+                        printf("Invalid selection.\n");
+                    }
+                }
+                break;
+
+            default:
+                printf("Input salah\n");
+                break;
+        }
+
+        printf("Pesan lagi (1/0) : ");
+        scanf("%d", &tambah);
+    }
+
+    printf("Total anda menjadi %d\n", total_harga);
+
+    int uang, kembali;
+    printf("Input uang : ");
+    scanf("%d", &uang);
+
+    kembali = uang - total_harga;
+    printf("Kembalian anda adalah %d\n", kembali);
+
+    return 0;
+}
